@@ -1,0 +1,55 @@
+/*!
+ * Bootstrap v2.3.1
+ *
+ * CustomeCSS for my plowing app page
+ *
+ */
+
+
+.navbar-custom {
+	color: 				black;
+	background-color:	#cfcfcf;
+}
+
+
+#contact label{
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+}
+#contact_submit{
+	padding-left: 100px;
+}
+#contact div{
+	margin-top: 1em;
+}
+textarea{
+	vertical-align: top;
+	height: 5em;
+}
+
+.error{
+	display: none;
+	margin-left: 5px;
+}
+
+.error_show{
+	color: red;
+	margin-left: 5px;
+	font-size: 10px;
+}
+
+input.invalid, textarea.invalid{
+	border: 2px solid red;
+}
+
+input.valid, textarea.valid{
+	border: 2px solid green;
+}
+
+
+body {
+	background-size: cover;
+	padding-top: 65px;
+	/* background-repeat: no-repeat; */
+}

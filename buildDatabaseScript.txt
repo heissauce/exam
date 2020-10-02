@@ -1,0 +1,133 @@
+drop database cisc158Exam;
+
+Create database cisc158Exam;
+
+use cisc158Exam;
+
+CREATE TABLE answers (
+  answerID int(11) NOT NULL AUTO_INCREMENT,
+  questionID int(11) NOT NULL,
+  answerNumber int(11) NOT NULL,
+  answerValue varchar(200) NOT NULL,
+  correct tinyint(1) NOT NULL,
+  PRIMARY KEY (answerID),
+  UNIQUE KEY questionID (questionID,answerNumber)
+);
+
+
+CREATE TABLE questions (
+  questionID int(11) NOT NULL AUTO_INCREMENT,
+  question varchar(250) NOT NULL,
+  questionType varchar(2) NOT NULL,
+  active bigint(20) NOT NULL,
+  PRIMARY KEY (questionID)
+);
+
+
+CREATE TABLE user (
+  userID int(11) NOT NULL AUTO_INCREMENT,
+  firstName varchar(65) NOT NULL,
+  lastName varchar(65) NOT NULL,
+  emailAddress varchar(65) NOT NULL,
+  password varchar(65) NOT NULL,
+  rawpassword varchar(65) NOT NULL,
+  role varchar(1) NOT NULL,
+  PRIMARY KEY (userID)
+);
+
+
+insert into user ( firstName, lastName, emailAddress, password, rawpassword, role) values ( "user", "admin", "user@admin.com", "user", "user", "A");
+
+CREATE TABLE userExam (
+  userID int(11) NOT NULL,
+  questionID int(11) NOT NULL,
+  answerID int(11) NOT NULL
+);
+
+insert into questions (question, questionType, active) values ('What is PHP?', 'MC', '1');
+insert into questions (question, questionType, active) values ('What is JavaScript?', 'MC', '1');
+insert into questions (question, questionType, active) values ('What s the character that needs to be at the end of each PHP command line?', 'MC', '1');
+insert into questions (question, questionType, active) values ('What is the correct way to add 1 to variable $myCount?', 'MC', '1');
+insert into questions (question, questionType, active) values ('How to start session in php?', 'MC', '1');
+insert into questions (question, questionType, active) values ('PHP is a client-side language?', 'TF', '0');
+insert into questions (question, questionType, active) values ('Javascript is a client-side language?', 'TF', '1');
+insert into questions (question, questionType, active) values ('Which of the following is considered a server side scripting language?', 'MC', '1');
+insert into questions (question, questionType, active) values ('PHP can run on different platforms (Ex. Windows, Linux, and Unix)?', 'TF', '1');
+insert into questions (question, questionType, active) values ('How do you write "Hello World" in PHP?', 'MC', '0');
+insert into questions (question, questionType, active) values ('All variables in PHP start with which symbol?', 'MC', '1');
+insert into questions (question, questionType, active) values ('How do you get information from a form that is submitted using the "get" method?', 'MC', '1');
+insert into questions (question, questionType, active) values ('When using the POST method, variables are displayed in the URL?', 'MC', '1');
+insert into questions (question, questionType, active) values ('In PHP you can use both single quotes and double quotes for strings:', 'MC', '1');
+insert into questions (question, questionType, active) values ('Which superglobal variable holds information about headers, paths, and script locations?', 'MC', '1');
+insert into questions (question, questionType, active) values ('Which one of these variables has an illegal name?', 'MC', '1');
+insert into questions (question, questionType, active) values ('Which operator is used to compare two values?', 'MC', '1');
+
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' Print HTTP Protocol ', '0' from questions where question = 'What is PHP?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' Port Helicopter Police ', '0' from questions where question = 'What is PHP?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' PHP Hypertext Processor ', '1' from questions where question = 'What is PHP?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' Project Hell Pilot ', '0' from questions where question = 'What is PHP?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' A browser base scripting language ', '1' from questions where question = 'What is JavaScript?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' A painting made with coffee ', '0' from questions where question = 'What is JavaScript?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' A Microsoft Product ', '0' from questions where question = 'What is JavaScript?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' a compiles language ', '0' from questions where question = 'What is JavaScript?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' A comma ', '0' from questions where question = 'What s the character that needs to be at the end of each PHP command line?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' A question mark ', '0' from questions where question = 'What s the character that needs to be at the end of each PHP command line?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' A semi-colon ', '1' from questions where question = 'What s the character that needs to be at the end of each PHP command line?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' nothing ', '0' from questions where question = 'What s the character that needs to be at the end of each PHP command line?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' $myCount?- ', '0' from questions where question = 'What is the correct way to add 1 to variable $myCount?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' $myCount+= ', '0' from questions where question = 'What is the correct way to add 1 to variable $myCount?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' $myCount++ ', '1' from questions where question = 'What is the correct way to add 1 to variable $myCount?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' +=$myCount ', '0' from questions where question = 'What is the correct way to add 1 to variable $myCount?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' session_begin() ', '0' from questions where question = 'How to start session in php?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' startSession() ', '0' from questions where question = 'How to start session in php?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' sessionStart() ', '0' from questions where question = 'How to start session in php?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' session_start() ', '1' from questions where question = 'How to start session in php?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' True ', '0' from questions where question = 'PHP is a client-side language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' False ', '1' from questions where question = 'PHP is a client-side language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' True ', '1' from questions where question = 'Javascript is a client-side language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' False ', '0' from questions where question = 'Javascript is a client-side language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' JavaScript ', '0' from questions where question = 'Which of the following is considered a server side scripting language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' HTML ', '0' from questions where question = 'Which of the following is considered a server side scripting language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' CSS ', '0' from questions where question = 'Which of the following is considered a server side scripting language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' PHP ', '1' from questions where question = 'Which of the following is considered a server side scripting language?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' True ', '1' from questions where question = 'PHP can run on different platforms (Ex. Windows, Linux, and Unix)?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' False ', '0' from questions where question = 'PHP can run on different platforms (Ex. Windows, Linux, and Unix)?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' "Hello World"; ', '0' from questions where question = 'How do you write "Hello World" in PHP?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' Document.Write("Hello World"); ', '0' from questions where question = 'How do you write "Hello World" in PHP?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' echo "Hello World"; ', '1' from questions where question = 'How do you write "Hello World" in PHP?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' $_GET[]; ', '1' from questions where question = 'How do you get information from a form that is submitted using the "get" method?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' Request.Form; ', '0' from questions where question = 'How do you get information from a form that is submitted using the "get" method?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' Request.QueryString; ', '0' from questions where question = 'How do you get information from a form that is submitted using the "get" method?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' $_POST[]; ', '0' from questions where question = 'How do you get information from a form that is submitted using the "get" method?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' & ', '0' from questions where question = 'All variables in PHP start with which symbol?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' $ ', '1' from questions where question = 'All variables in PHP start with which symbol?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' ! ', '0' from questions where question = 'All variables in PHP start with which symbol?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' True ', '0' from questions where question = 'When using the POST method, variables are displayed in the URL?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' False ', '1' from questions where question = 'When using the POST method, variables are displayed in the URL?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' True ', '1' from questions where question = 'In PHP you can use both single quotes and double quotes for strings:';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' False ', '0' from questions where question = 'In PHP you can use both single quotes and double quotes for strings:';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' $_GET ', '0' from questions where question = 'Which superglobal variable holds information about headers, paths, and script locations?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' $_SESSION ', '0' from questions where question = 'Which superglobal variable holds information about headers, paths, and script locations?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' $_GLOBALS ', '0' from questions where question = 'Which superglobal variable holds information about headers, paths, and script locations?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' $_SERVER ', '1' from questions where question = 'Which superglobal variable holds information about headers, paths, and script locations?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' $myVar ', '0' from questions where question = 'Which one of these variables has an illegal name?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' $my-Var ', '1' from questions where question = 'Which one of these variables has an illegal name?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' $my_Var_ ', '0' from questions where question = 'Which one of these variables has an illegal name?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' $my_Var ', '0' from questions where question = 'Which one of these variables has an illegal name?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '1', ' >= ', '0' from questions where question = 'Which operator is used to compare two values?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '2', ' == ', '1' from questions where question = 'Which operator is used to compare two values?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '3', ' !- ', '0' from questions where question = 'Which operator is used to compare two values?';
+insert into answers (questionID, answerNumber, answerValue, correct) select questionID, '4', ' = ', '0' from questions where question = 'Which operator is used to compare two values?';
+
+
+
+
+
+
+
+
+
+
+
+
+
